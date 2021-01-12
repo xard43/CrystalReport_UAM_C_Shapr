@@ -17,11 +17,7 @@ namespace CrystalReports_UAM
         {
             InitializeComponent();
 
-            cmbReports.Items.Clear();
-            cmbReports.Items.Add("Wybierz raport");
-            cmbReports.Items.Add("Otwarte pozycje");
-
-            cmbReports.SelectedIndex = 0;
+            ListOfReports();
         }
 
         private void cmbReports_SelectedIndexChanged(object sender, EventArgs e)
@@ -34,9 +30,22 @@ namespace CrystalReports_UAM
                 case 1:
                     crystalReportViewer1.ReportSource = crOpenItems1;
                     break;
-               
+                case 2:
+                    crystalReportViewer1.ReportSource = crCashReport1;
+                    break;
+
             }
               
+        }
+
+        private void ListOfReports()
+        {
+            cmbReports.Items.Clear();
+            cmbReports.Items.Add("Wybierz raport");
+            cmbReports.Items.Add("Otwarte pozycje");
+            cmbReports.Items.Add("Raport kasowy");
+
+            cmbReports.SelectedIndex = 0;
         }
     }
 }

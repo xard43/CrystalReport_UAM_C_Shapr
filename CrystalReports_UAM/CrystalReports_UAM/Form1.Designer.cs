@@ -21,6 +21,7 @@
             this.crOpenItems1 = new CrystalReports_UAM.crOpenItems();
             this.labReport = new System.Windows.Forms.Label();
             this.cmbReports = new System.Windows.Forms.ComboBox();
+            this.crCashReport1 = new CrystalReports_UAM.crCashReport();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -57,6 +58,8 @@
             this.cmbReports.TabIndex = 2;
             this.cmbReports.SelectedIndexChanged += new System.EventHandler(this.cmbReports_SelectedIndexChanged);
             // 
+            
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -78,6 +81,7 @@
         private crOpenItems crOpenItems1;
         private System.Windows.Forms.Label labReport;
         private System.Windows.Forms.ComboBox cmbReports;
+        private crCashReport crCashReport1;
     }
 }
 
