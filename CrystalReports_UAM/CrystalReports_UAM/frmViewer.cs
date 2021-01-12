@@ -16,6 +16,27 @@ namespace CrystalReports_UAM
         public Form1()
         {
             InitializeComponent();
+
+            cmbReports.Items.Clear();
+            cmbReports.Items.Add("Wybierz raport");
+            cmbReports.Items.Add("Otwarte pozycje");
+
+            cmbReports.SelectedIndex = 0;
+        }
+
+        private void cmbReports_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(cmbReports.SelectedIndex)
+            {
+                case 0:
+                    crystalReportViewer1.ReportSource = null;
+                    break;
+                case 1:
+                    crystalReportViewer1.ReportSource = crOpenItems1;
+                    break;
+               
+            }
+              
         }
     }
 }
