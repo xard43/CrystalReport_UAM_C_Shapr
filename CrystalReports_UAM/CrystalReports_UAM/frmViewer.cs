@@ -18,11 +18,41 @@ namespace CrystalReports_UAM
             InitializeComponent();
 
             ListOfReports();
+
+            dtpCashReportDate.Value = new DateTime(2017, 08, 22);
+            crystalReportViewer1.ToolPanelView = ToolPanelViewType.None;
+            crystalReportViewer1.ReuseParameterValuesOnRefresh = true;
+            ShowReport();
         }
 
         private void cmbReports_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch(cmbReports.SelectedIndex)
+            ShowReport();
+        }
+
+        private ParameterFields GetCashReportParameters()
+        {
+            ParameterFields crParams = new ParameterFields();
+            ParameterField crParam = new ParameterField();
+            ParameterDiscreteValue crParamDiscreteValue = new ParameterDiscreteValue();
+
+            crParam.Name = "DataRaportu";
+
+            crParamDiscreteValue.Value = dtpCashReportDate.Value;
+            crParam.CurrentValues.Add(crParamDiscreteValue);
+            crParams.Add(crParam);
+
+            return crParams;
+        }
+
+        private void ShowReport()
+        {
+            labCashReportDate.Visible = false;
+
+            dtpCashReportDate.Visible = false;
+            crystalReportViewer1.ReportSource = null;
+
+            switch (cmbReports.SelectedIndex)
             {
                 case 0:
                     crystalReportViewer1.ReportSource = null;
@@ -31,13 +61,16 @@ namespace CrystalReports_UAM
                     crystalReportViewer1.ReportSource = crOpenItems1;
                     break;
                 case 2:
+                    labCashReportDate.Visible = true;
+                    dtpCashReportDate.Visible = true;
+                    crystalReportViewer1.ParameterFieldInfo = GetCashReportParameters();
                     crystalReportViewer1.ReportSource = crCashReport1;
                     break;
 
             }
-              
-        }
 
+        }
+        
         private void ListOfReports()
         {
             cmbReports.Items.Clear();
@@ -46,6 +79,11 @@ namespace CrystalReports_UAM
             cmbReports.Items.Add("Raport kasowy");
 
             cmbReports.SelectedIndex = 0;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            ShowReport();
         }
     }
 }
